@@ -7,10 +7,10 @@ interface FloatingBackgroundProps {
 
 export function FloatingBackground({ className = "" }: FloatingBackgroundProps) {
   const animatedTexts = [
-    "Fenet",
-    "Software Engineer", 
-    "Web Developer",
-    "Full Stack Developer"
+    "Full Stack Developer",
+    "Web Developer", 
+    "Mobile Developer",
+    "Software Engineer"
   ];
 
   return (
@@ -66,7 +66,7 @@ export function FloatingBackground({ className = "" }: FloatingBackgroundProps) 
           }}
           style={{
             top: `${8 + (index * 12)}%`,
-            fontSize: '6px'
+            fontSize: '26px'
           }}
         >
           {text}
@@ -91,7 +91,7 @@ export function FloatingBackground({ className = "" }: FloatingBackgroundProps) 
           }}
           style={{
             top: `${55 + (index * 10)}%`,
-            fontSize: '4px'
+            fontSize: '24px'
           }}
         >
           {text}
@@ -116,7 +116,7 @@ export function FloatingBackground({ className = "" }: FloatingBackgroundProps) 
           }}
           style={{
             top: `${25 + (index * 15)}%`,
-            fontSize: '3px'
+            fontSize: '23px'
           }}
         >
           {text}

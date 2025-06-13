@@ -51,7 +51,7 @@ export function Education() {
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-3xl mx-auto space-y-8">
           {educationData.map((edu, index) => (
             <motion.div
               key={edu.title}
@@ -59,7 +59,7 @@ export function Education() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="glass-card p-8 rounded-2xl"
+              className="glass-card p-8 rounded-2xl hover:neon-glow transition-all duration-300"
             >
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Icon/Logo */}
