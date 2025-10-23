@@ -1,23 +1,31 @@
 
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Twitter, Heart } from 'lucide-react';
+import { Mail, Linkedin, Heart } from 'lucide-react';
 
 export function Footer() {
   const socialLinks = [
     {
-      icon: Github,
-      href: "https://github.com/fenetdamena",
-      label: "GitHub"
+      icon: () => (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+        </svg>
+      ),
+      href: "https://x.com/FenetDamen23140",
+      label: "X (Twitter)"
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/fenetdamena",
+      href: "https://www.linkedin.com/in/fenet-damena-488780280/",
       label: "LinkedIn"
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com/fenetdamena",
-      label: "Twitter"
+      icon: () => (
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+        </svg>
+      ),
+      href: "https://t.me/Emuy_16",
+      label: "Telegram"
     },
     {
       icon: Mail,
@@ -66,7 +74,7 @@ export function Footer() {
             key={i}
             className="absolute w-2 h-2 bg-neon-purple/30 rounded-full"
             initial={{ 
-              x: Math.random() * window.innerWidth,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
               y: Math.random() * 400,
               opacity: 0 
             }}
