@@ -136,36 +136,7 @@ export function About() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="glass-card p-8 rounded-2xl"
-        >
-          <h3 className="text-2xl font-orbitron font-bold mb-6 gradient-text">
-            My Journey
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-xl font-semibold mb-3 text-neon-purple">Education</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• ALX Software Engineering Program Graduate</li>
-                <li>• BSc Software Engineering, ASTU (In Progress)</li>
-                <li>• A2SV (Africa to Silicon Valley) Trainee</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xl font-semibold mb-3 text-neon-cyan">Leadership & Impact</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• e-SHE Ambassador for Ministry of Education</li>
-                <li>• President, e-SHE Young Advisory Group</li>
-                <li>• ASTU CSEC Club Member</li>
-                <li>• Innovation & Entrepreneurship Club Contributor</li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
+       
       </div>
     </section>
   );
