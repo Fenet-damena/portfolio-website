@@ -63,7 +63,8 @@ export function Contact() {
     setStatus("Sending...");
 
     try {
-      const res = await fetch("http://localhost:5000/send-email", {
+      const res = await fetch("http://localhost:5000/contact", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -93,7 +94,7 @@ export function Contact() {
   };
 
   const contactInfo = [
-    { icon: Mail, title: "Email", value: "fenetdamena74@gmail.com", color: "text-neon-purple" },
+    { icon: Mail, title: "Email", value: "Fenetdamena74@gmail.com", color: "text-neon-purple" },
     { icon: MapPin, title: "Location", value: "Adama, Ethiopia", color: "text-neon-cyan" },
     { icon: Phone, title: "Phone", value: "+251 966217113", color: "text-neon-pink" },
   ] as const;

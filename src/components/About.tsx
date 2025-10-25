@@ -72,7 +72,7 @@ export function About() {
                 className="w-64 h-80 md:w-72 md:h-88 rounded-2xl overflow-hidden border-2 border-neon-cyan/30 shadow-xl relative"
               >
                 <img 
-                  src="/uploads/mypic2.png"
+                  src="/uploads/short.png"
                   alt="Fenet Damena - About"
                   className="w-full h-full object-cover"
                 />

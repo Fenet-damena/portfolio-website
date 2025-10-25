@@ -26,7 +26,7 @@ app.post("/contact", async (req, res) => {
   try {
     await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
-      to: process.env.MY_EMAIL!,
+      to: 'Fenetdamena74@gmail.com',
       subject: `📬 New message from ${name}`,
       reply_to: email,
       html: `
@@ -47,6 +47,6 @@ app.post("/contact", async (req, res) => {
 
 // Start server
 app.listen(port, () => {
-    
+
   console.log(`✅ Server running on port ${port}`);
 });
