@@ -1,82 +1,102 @@
+"use client";
 
-import { motion } from 'framer-motion';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+import { motion } from "framer-motion";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
+
+type FormData = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  const [status, setStatus] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      value: "fenetdamena74@gmail.com",
-      color: "text-neon-purple"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      value: "Adama, Ethiopia",
-      color: "text-neon-cyan"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      value: "+251 9XX XXX XXX",
-      color: "text-neon-pink"
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const extractMessage = (payload: unknown): string | undefined => {
+    if (!payload) return undefined;
+    if (typeof payload === "string") return payload;
+    if (typeof payload === "object" && payload !== null) {
+      const obj = payload as Record<string, unknown>;
+      if (typeof obj.error === "string") return obj.error;
+      if (typeof obj.details === "string") return obj.details;
+      if (typeof obj.message === "string") return obj.message;
     }
-  ];
+    return undefined;
+  };
+
+  async function parseResponseBody(res: Response): Promise<unknown> {
+    const ct = res.headers.get("content-type") ?? "";
+    try {
+      if (ct.includes("application/json")) return await res.json();
+      return await res.text();
+    } catch (err) {
+      return `Failed to parse response body: ${(err as Error).message}`;
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatus("Please fill in all fields.");
+      return;
+    }
+
     setIsSubmitting(true);
-    
+    setStatus("Sending...");
+
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(`Message from ${formData.name}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      const res = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const payload = await parseResponseBody(res);
+
+      if (res.ok) {
+        setStatus("✅ Message sent successfully!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        const msg = extractMessage(payload);
+        setStatus(
+          msg ||
+            `Failed to send message (status ${res.status}). Check server logs.`
+        );
+        console.error("Send failed:", res.status, payload);
+      }
+    } catch (err) {
+      console.error("Contact submit network/error:", err);
+      setStatus(
+        "Network error. Please try again. If this persists, confirm server is running and CORS is configured."
       );
-      const mailtoLink = `mailto:fenetdamena74@gmail.com?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Show success toast
-      toast({
-        title: "Email Sent Successfully!",
-        description: "Your message has been sent to fenetdamena74@gmail.com",
-        duration: 5000,
-      });
-      
-      // Reset form
-      setFormData({ name: '', email: '', message: '' });
-      
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was an error sending your message. Please try again.",
-        variant: "destructive",
-      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const contactInfo = [
+    { icon: Mail, title: "Email", value: "fenetdamena74@gmail.com", color: "text-neon-purple" },
+    { icon: MapPin, title: "Location", value: "Adama, Ethiopia", color: "text-neon-cyan" },
+    { icon: Phone, title: "Phone", value: "+251 966217113", color: "text-neon-pink" },
+  ] as const;
 
   return (
     <section className="py-20 relative" id="contact">
@@ -92,13 +112,12 @@ export function Contact() {
             Let's Connect
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to collaborate on innovative projects or discuss opportunities? 
+            Ready to collaborate on innovative projects or discuss opportunities?
             I'd love to hear from you!
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -106,10 +125,8 @@ export function Contact() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h3 className="text-2xl font-orbitron font-bold mb-6">
-              Get in Touch
-            </h3>
-            
+            <h3 className="text-2xl font-orbitron font-bold mb-6">Get in Touch</h3>
+
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
@@ -131,7 +148,6 @@ export function Contact() {
             ))}
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -142,55 +158,53 @@ export function Contact() {
             <h3 className="text-2xl font-orbitron font-bold mb-6 gradient-text">
               Send Message
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300"
-                  required
-                />
-              </div>
-              
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300"
-                  required
-                />
-              </div>
-              
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="Your Message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={6}
-                  className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300 resize-none"
-                  required
-                />
-              </div>
-              
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={6}
+                className="w-full p-4 glass-card rounded-lg bg-background/50 border border-border focus:border-neon-purple outline-none transition-all duration-300 resize-none"
+                required
+              />
+
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
                 className="w-full flex items-center justify-center space-x-2 p-4 bg-gradient-to-r from-neon-purple to-neon-cyan text-white rounded-lg font-semibold hover:neon-glow transition-all duration-300 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
-                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               </motion.button>
             </form>
+
+            {status && (
+              <p className="text-center text-sm text-muted-foreground mt-4">
+                {status}
+              </p>
+            )}
           </motion.div>
         </div>
       </div>
