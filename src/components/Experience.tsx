@@ -22,8 +22,8 @@ const experiences: ExperienceType[] = [
     location: "Adama, Ethiopia • On-site",
     description:
       "Developed the A2SV Application Platform, a scalable web starter project using Next.js, RTK Query, Axios, and Tailwind CSS, improving development efficiency and reducing project delivery time by 30% through Agile sprint planning. Reviewed and optimized 10+ pull requests weekly, ensuring high code quality, maintainability, and adherence to best development practices.",
-    skills: ["Front-End Development", "JavaScript", "React", "Responsive Design"],
-    achievements: ["Helped me get this job"],
+    skills: [],
+    achievements: [],
     logo: "logo/esklet.png",
   },
   {
@@ -34,7 +34,7 @@ const experiences: ExperienceType[] = [
     location: "Adama, Oromia Region • On-site",
     description:
       "Designed and developed a full-stack web application to automate employee performance evaluation, improving efficiency by 60% and ensuring transparency. Built secure authentication and role-based access using Django and REST API to streamline management workflows. Implemented interactive React dashboards for real-time performance tracking, analytics, and report generation.",
-    skills: ["Front-End Development", "JavaScript", "React", "Responsive Design"],
+    skills: [],
     logo: "logo/astu.png",
   },
   {
@@ -43,9 +43,8 @@ const experiences: ExperienceType[] = [
     type: "Part-time",
     period: "Mar 2025 - Present • 4 mos",
     location: "Remote",
-    description:
-      "Designed and developed a full-stack web application to automate employee performance evaluation, improving efficiency by 60% and ensuring transparency. Built secure authentication and role-based access using Django and REST API to streamline management workflows. Implemented interactive React dashboards for real-time performance tracking, analytics, and report generation.",
-    skills: ["Leadership", "Educational Technology", "Community Engagement"],
+    description:"Serve as an e-SHE ambassador at Adama Science and Technology University (ASTU), collaborating with national and international stakeholders including the Ministry of Education, Mastercard Foundation, and Arizona State University (ASU). Lead initiatives to promote digital learning adoption, gather student feedback to improve platform usability, organize workshops and awareness campaigns, and mentor fellow students. Act as a liaison between students, university administrators, and program partners to support educational technology initiatives and enhance engagement with e-SHE resources.",
+    skills: [],
     logo: "logo/e-she.png",
   },
 ];

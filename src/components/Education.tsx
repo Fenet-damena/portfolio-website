@@ -1,35 +1,48 @@
-
 import { motion } from 'framer-motion';
-import { BookOpen, Award, Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
+import { FC, ReactElement } from 'react';
+
+type EducationItem = {
+  title: string;
+  organization: string;
+  period: string;
+  location: string;
+  icon: string | FC<{ className?: string }>; // icon can be a string URL or a React component
+  description: string;
+  skills: string[];
+};
 
 export function Education() {
-  const educationData = [
-    {
-      title: "Data Structures and Algorithms",
-      organization: "A2SV | Africa to Silicon Valley",
-      period: "Jan 2024 - Nov 2024",
-      location: "Remote",
-      icon: "/lovable-uploads/1886655d-c773-4120-ba3e-940af4ea4d68.png",
-      description: "While at the A2SV Foundation, I participated in an intensive Data Structures and Algorithms training program that deepened my understanding of core concepts. Through hands-on coding challenges and problem-solving sessions, I enhanced my skills in data structures, algorithm optimization, and dynamic programming. Collaborating with peers and mentors further improved my critical thinking, coding efficiency, and ability to tackle complex technical challenges.",
-      skills: ["Data Structures", "Algorithm Optimization", "Dynamic Programming", "Problem Solving", "Critical Thinking"]
-    },
+  const educationData: EducationItem[] = [
     {
       title: "Software Engineering",
       organization: "Adama Science and Technology University",
       period: "Mar 2022 - Present",
       location: "Adama, Oromia Region • On-site",
-      icon: "/lovable-uploads/27af02be-e6cb-4fd5-91bd-ecfb767717c1.png",
-      description: "I am pursuing a Software Engineering degree at Adama Science and Technology University, one of Ethiopia's leading universities. While maintaining strong academic performance, My studies cover key areas such as programming, data structures, databases, and software development. Additionally, I engage in hands-on projects and coding challenges to enhance my technical and problem-solving skills.",
-      skills: ["Programming", "Data Structures", "Databases", "Software Development", "Project Management"]
+      icon: "/logo/astu.png",
+      description:
+        "I am pursuing a Software Engineering degree at Adama Science and Technology University (ASTU), one of Ethiopia's leading universities, with a CGPA of 3.83/4.0. My studies cover key areas such as programming, data structures, databases, software development, distributed systems, and data communication, among other software engineering subjects. In addition to my coursework, I actively engage in hands-on projects and coding challenges to enhance my technical skills, problem-solving abilities, and practical experience in software development.",
+      skills: ["Programming", "Data Structures", "Databases", "Software Development", "Project Management", "Distributed Systems", "Data Communication"],
+    },
+    {
+      title: "Data Structures and Algorithms",
+      organization: "A2SV | Africa to Silicon Valley",
+      period: "Jan 2024 - Nov 2024",
+      location: "Remote",
+      icon: "/logo/a2sv.png",
+      description:
+        "While at the A2SV Foundation, I participated in an intensive Data Structures and Algorithms training program that deepened my understanding of core concepts. Through hands-on coding challenges and problem-solving sessions, I enhanced my skills in data structures, algorithm optimization, and dynamic programming. Collaborating with peers and mentors further improved my critical thinking, coding efficiency, and ability to tackle complex technical challenges.",
+      skills: ["Data Structures", "Algorithm Optimization", "Dynamic Programming", "Problem Solving", "Critical Thinking","Web Development"],
     },
     {
       title: "ALX Software Engineering Program",
       organization: "ALX Africa",
       period: "2023 - 2024",
       location: "Remote",
-      icon: BookOpen,
-      description: "Completed the rigorous ALX Software Engineering program, gaining comprehensive knowledge in full-stack development, system design, and collaborative software development practices. The program emphasized practical skills through real-world projects and peer learning.",
-      skills: ["Full-Stack Development", "System Design", "Collaboration", "Project-Based Learning"]
+      icon:"/logo/alx.png",
+      description:
+        "Completed the rigorous ALX Software Engineering program, gaining comprehensive knowledge in full-stack development, system design, and collaborative software development practices. The program emphasized practical skills through real-world projects and peer learning.",
+      skills: ["Full-Stack Development", "System Design", "Collaboration", "Project-Based Learning"],
     }
   ];
 

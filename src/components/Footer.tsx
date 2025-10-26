@@ -168,9 +168,7 @@ export function Footer() {
             className="pt-8 border-t border-border/50"
           >
             <p className="text-sm text-muted-foreground/60 flex items-center justify-center space-x-2">
-              <span>© 2024 Fenet Damena. Made with</span>
-              <Heart className="w-4 h-4 text-red-500 animate-pulse" />
-              <span>and passion for innovation</span>
+              <span>© 2024 Fenet Damena.</span>
             </p>
           </motion.div>
         </div>

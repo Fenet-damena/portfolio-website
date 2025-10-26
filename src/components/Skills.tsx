@@ -2,28 +2,39 @@
 import { motion } from 'framer-motion';
 
 export function Skills() {
-  const skillCategories = [
-    {
-      title: "Frontend",
-      skills: ["JavaScript", "HTML/CSS", "React", "Flutter", "Figma"],
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "Backend",
-      skills: ["Python", "Django", "Firebase", "REST APIs", "PostgreSQL", "MongoDB"],
-      color: "from-cyan-500 to-blue-500"
-    },
-    {
-      title: "Tools & Platforms",
-      skills: ["Git", "GitHub", "VS Code", "Google Cloud", "Linux"],
-      color: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Core Competencies",
-      skills: ["Data Structures", "Algorithms", "Agile", "Leadership", "AI/ML"],
-      color: "from-orange-500 to-red-500"
-    }
-  ];
+ const skillCategories = [
+  {
+    title: "Languages",
+    skills: [
+      "JavaScript", "TypeScript", "Python","Go","c"
+    ],
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    title: "Frameworks & Libraries",
+    skills: [
+      "Django", "React.js", "Next.js", "Tailwind CSS", "Framer Motion",
+      "Node.js", "Express.js", "Redux", "Bootstrap", "Material-UI"
+    ],
+    color: "from-cyan-500 to-blue-500"
+  },
+  {
+    title: "Databases, Tools & Platforms",
+    skills: [
+      "Firebase", "PostgreSQL", "MongoDB", "MySQL",
+      "SQLite", "Redis", "Oracle DB", "Supabase",
+      "Git", "GitHub", "VS Code", "Google Cloud", "Linux"
+    ],
+    color: "from-green-500 to-emerald-500"
+  },
+  {
+    title: "Core Competencies",
+    skills: [
+      "Data Structures", "Algorithms", "Agile", "Leadership", "AI/ML"
+    ],
+    color: "from-orange-500 to-red-500"
+  }
+];
 
   return (
     <section className="py-20 relative" id="skills">
