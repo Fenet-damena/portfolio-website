@@ -2,8 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import emailjs from "emailjs-com";
-import { Mail, MapPin, Phone } from "lucide-react";
-import toast, { Toaster } from "react-hot-toast";
+import { Mail, MapPin, Phone, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 function getErrorMessage(err: unknown): string {
   if (typeof err === "string") return err;
@@ -21,15 +20,18 @@ function getErrorMessage(err: unknown): string {
   }
 }
 
+type Status = { type: "idle" } | { type: "sending" } | { type: "success"; text: string } | { type: "error"; text: string };
+
 export default function ContactDesign() {
   const form = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<Status>({ type: "idle" });
   const [isSending, setIsSending] = useState(false);
 
   useEffect(() => {
     try {
       emailjs.init("LhX_JrZNc7NTFrrgc");
     } catch {
-      // ignore if init not needed
+      // ignore
     }
   }, []);
 
@@ -38,7 +40,7 @@ export default function ContactDesign() {
     if (!form.current || isSending) return;
 
     setIsSending(true);
-    const toastId = toast.loading("Sending your message...");
+    setStatus({ type: "sending" });
 
     try {
       const result = await emailjs.sendForm(
@@ -48,13 +50,13 @@ export default function ContactDesign() {
         "LhX_JrZNc7NTFrrgc"
       );
 
-      toast.success("Message sent successfully! 🎉", { id: toastId });
-      console.log("Email sent:", result);
+      console.log("Email send result:", result);
+      setStatus({ type: "success", text: "Message sent successfully!" });
       form.current.reset();
     } catch (error: unknown) {
       const msg = getErrorMessage(error);
-      toast.error("Failed to send email. Please try again later.", { id: toastId });
       console.error("Email send error:", msg);
+      setStatus({ type: "error", text: "Failed to send email. Please try again later." });
     } finally {
       setIsSending(false);
     }
@@ -68,8 +70,6 @@ export default function ContactDesign() {
 
   return (
     <section id="contact" className="py-20 relative">
-      <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
-
       <div className="container mx-auto px-6">
         <h2 className="text-4xl mb-6 font-bold gradient-text">Let's Connect</h2>
         <p className="mb-12 text-lg text-muted-foreground">
@@ -77,6 +77,7 @@ export default function ContactDesign() {
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Info Cards */}
           <div className="space-y-8">
             {contactInfo.map((info) => (
               <div
@@ -92,6 +93,7 @@ export default function ContactDesign() {
             ))}
           </div>
 
+          {/* Message Form */}
           <div className="glass-card p-8 rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold mb-6 gradient-text">Send Message</h3>
 
@@ -117,13 +119,37 @@ export default function ContactDesign() {
                 required
                 className="w-full p-4 rounded-lg border bg-white/80 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-neon-cyan"
               />
-              <button
-                type="submit"
-                disabled={isSending}
-                className={`w-full p-4 bg-gradient-to-r from-neon-purple to-neon-cyan text-white rounded-lg hover:opacity-90 transition ${isSending ? "opacity-60 cursor-not-allowed" : ""}`}
-              >
-                {isSending ? "Sending..." : "Send Message"}
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className={`w-full p-4 bg-gradient-to-r from-neon-purple to-neon-cyan text-white rounded-lg hover:opacity-90 transition ${isSending ? "opacity-60 cursor-not-allowed" : ""}`}
+                >
+                  {isSending ? "Sending..." : "Send Message"}
+                </button>
+
+                {/* inline status under button with icon */}
+                <div className="mt-3 min-h-[1.25rem] flex items-center justify-center">
+                  {status.type === "sending" && (
+                    <div className="flex items-center space-x-2 text-muted-foreground">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      <span>Sending…</span>
+                    </div>
+                  )}
+                  {status.type === "success" && (
+                    <div className="flex items-center space-x-2 text-green-600">
+                      <CheckCircle className="w-5 h-5" />
+                      <span>{status.text}</span>
+                    </div>
+                  )}
+                  {status.type === "error" && (
+                    <div className="flex items-center space-x-2 text-red-600">
+                      <XCircle className="w-5 h-5" />
+                      <span>{status.text}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
             </form>
           </div>
         </div>
