@@ -12,7 +12,7 @@
     "outDir": "dist",                       // JS output folder
     "rootDir": ".",                         
     "noEmitOnError": true,                  // Don't emit JS if TS errors exist
-    "ignoreDeprecations": "6.0"             // Silence deprecation for moduleResolution=node10
+    //"ignoreDeprecations": "6.0"             // Silence deprecation for moduleResolution=node10
   },
   "include": ["index.ts"],                   // Include main server file
   "exclude": ["node_modules"]               
