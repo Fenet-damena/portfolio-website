@@ -63,9 +63,9 @@ export default function ContactDesign() {
   };
 
   const contactInfo = [
-    { icon: Mail, title: "Email", value: "Fenetdamena74@gmail.com", color: "text-neon-purple" },
-    { icon: MapPin, title: "Location", value: "Adama, Ethiopia", color: "text-neon-cyan" },
-    { icon: Phone, title: "Phone", value: "+251 966217113", color: "text-neon-pink" },
+    { icon: Mail, title: "Email", value: "Fenetdamena74@gmail.com", color: "text-neon-purple", valueColor: "text-white" },
+    { icon: MapPin, title: "Location", value: "Adama, Ethiopia", color: "text-neon-cyan", valueColor: "text-white" },
+    { icon: Phone, title: "Phone", value: "+251 966217113", color: "text-neon-pink", valueColor: "text-white" },
   ] as const;
 
   return (
@@ -87,7 +87,7 @@ export default function ContactDesign() {
                 <info.icon className="w-6 h-6" />
                 <div>
                   <h4 className="font-semibold">{info.title}</h4>
-                  <p className="text-black">{info.value}</p>
+                  <p className={`${info.valueColor}`}>{info.value}</p>
                 </div>
               </div>
             ))}
@@ -128,7 +128,7 @@ export default function ContactDesign() {
                   {isSending ? "Sending..." : "Send Message"}
                 </button>
 
-                {/* inline status under button with icon */}
+                {/* Inline status under button with icon */}
                 <div className="mt-3 min-h-[1.25rem] flex items-center justify-center">
                   {status.type === "sending" && (
                     <div className="flex items-center space-x-2 text-muted-foreground">
