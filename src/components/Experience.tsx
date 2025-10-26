@@ -1,42 +1,56 @@
-
 import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { Calendar, MapPin, ExternalLink } from 'lucide-react';
 
-export function Experience() {
-  const experiences = [
-    {
-      title: "Ambassador",
-      company: "e-Learning for Strengthening Higher Education in Ethiopia (e-SHE)",
-      type: "Part-time",
-      period: "Mar 2025 - Present • 4 mos",
-      location: "Remote",
-      description: "Serving as an e-SHE Ambassador for the Ministry of Education, promoting digital learning initiatives and strengthening higher education infrastructure across Ethiopia.",
-      skills: ["Leadership", "Educational Technology", "Community Engagement"],
-      logo: "/lovable-uploads/1886655d-c773-4120-ba3e-940af4ea4d68.png"
-    },
-    {
-      title: "Web Developer",
-      company: "Prodigy InfoTech",
-      type: "Internship",
-      period: "Aug 2024 - Oct 2024 • 3 mos",
-      location: "Maharashtra, India • Remote",
-      description: "Developed responsive web applications using modern frontend technologies. Collaborated with cross-functional teams to deliver high-quality user interfaces and enhanced user experiences.",
-      skills: ["Front-End Development", "JavaScript", "React", "Responsive Design"],
-      achievements: ["helped me get this job"],
-      logo: "/lovable-uploads/27af02be-e6cb-4fd5-91bd-ecfb767717c1.png"
-    },
-    {
-      title: "Web Developer",
-      company: "Adama Science and Technology University",
-      type: "Internship",
-      period: "Jul 2024 - Sep 2024 • 3 mos",
-      location: "Adama, Oromia Region • On-site",
-      description: "As a Frontend Web Developer Intern at the ASTU ICT Center, I leveraged my expertise in HTML, CSS, JavaScript, and frontend frameworks to design and implement engaging user interfaces for the organization's web applications.",
-      skills: ["Teamwork", "JavaScript", "HTML", "CSS", "Frontend Frameworks"],
-      logo: "/lovable-uploads/2aa77a48-1b48-4964-8622-5284de82607c.png"
-    }
-  ];
+type ExperienceType = {
+  title: string;
+  company: string;
+  type: string;
+  period: string;
+  location: string;
+  description: string;
+  skills?: string[];
+  achievements?: string[];
+  logo: string;
+};
 
+const experiences: ExperienceType[] = [
+  {
+    title: "Software Engineer",
+    company: "eskalate",
+    type: "Internship",
+    period: "Aug 2024 - Oct 2024 • 3 mos",
+    location: "Adama, Ethiopia • On-site",
+    description:
+      "Developed the A2SV Application Platform, a scalable web starter project using Next.js, RTK Query, Axios, and Tailwind CSS, improving development efficiency and reducing project delivery time by 30% through Agile sprint planning. Reviewed and optimized 10+ pull requests weekly, ensuring high code quality, maintainability, and adherence to best development practices.",
+    skills: ["Front-End Development", "JavaScript", "React", "Responsive Design"],
+    achievements: ["Helped me get this job"],
+    logo: "logo/esklet.png",
+  },
+  {
+    title: "Software Developer",
+    company: "Adama Science and Technology University ICT Center",
+    type: "Internship",
+    period: "Jul 2024 - Sep 2024 • 3 mos",
+    location: "Adama, Oromia Region • On-site",
+    description:
+      "Designed and developed a full-stack web application to automate employee performance evaluation, improving efficiency by 60% and ensuring transparency. Built secure authentication and role-based access using Django and REST API to streamline management workflows. Implemented interactive React dashboards for real-time performance tracking, analytics, and report generation.",
+    skills: ["Front-End Development", "JavaScript", "React", "Responsive Design"],
+    logo: "logo/astu.png",
+  },
+  {
+    title: "Ambassador",
+    company: "e-Learning for Strengthening Higher Education in Ethiopia (e-SHE)",
+    type: "Part-time",
+    period: "Mar 2025 - Present • 4 mos",
+    location: "Remote",
+    description:
+      "Designed and developed a full-stack web application to automate employee performance evaluation, improving efficiency by 60% and ensuring transparency. Built secure authentication and role-based access using Django and REST API to streamline management workflows. Implemented interactive React dashboards for real-time performance tracking, analytics, and report generation.",
+    skills: ["Leadership", "Educational Technology", "Community Engagement"],
+    logo: "logo/e-she.png",
+  },
+];
+
+export default function Experience() {
   return (
     <section className="py-20 relative" id="experience">
       <div className="container mx-auto px-6">
@@ -69,8 +83,8 @@ export function Experience() {
                 {/* Company Logo */}
                 <div className="flex-shrink-0">
                   <div className="w-16 h-16 rounded-xl overflow-hidden border-2 border-neon-cyan/30 flex items-center justify-center glass-card">
-                    <img 
-                      src={exp.logo} 
+                    <img
+                      src={exp.logo}
                       alt={exp.company}
                       className="w-full h-full object-cover"
                     />
@@ -104,9 +118,11 @@ export function Experience() {
                     {exp.description}
                   </p>
 
-                  {exp.achievements && (
+                  {exp.achievements?.length > 0 && (
                     <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-neon-cyan mb-2">Achievements:</h4>
+                      <h4 className="text-sm font-semibold text-neon-cyan mb-2">
+                        Achievements:
+                      </h4>
                       <ul className="text-sm text-muted-foreground">
                         {exp.achievements.map((achievement, i) => (
                           <li key={i} className="flex items-center gap-2">
@@ -118,16 +134,18 @@ export function Experience() {
                     </div>
                   )}
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-neon-cyan/20 text-neon-cyan text-sm rounded-full border border-neon-cyan/30"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+                  {exp.skills?.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1 bg-neon-cyan/20 text-neon-cyan text-sm rounded-full border border-neon-cyan/30"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

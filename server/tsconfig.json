@@ -1,17 +1,19 @@
 {
-  // ...existing code...
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": false,
+    "target": "ES2020",                     // Modern JS features
+    "module": "CommonJS",                   // Node-friendly modules
+    "moduleResolution": "Node",             // Resolves node_modules imports
+    "esModuleInterop": true,                // Enables import express from 'express'
+    "allowSyntheticDefaultImports": true,   
+    "resolveJsonModule": true,              
+    "skipLibCheck": true,                   
+    "strict": true,                         // Enable full type-checking
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "ignoreDeprecations": "6.0"
-  }
-  // ...existing code...
+    "outDir": "dist",                       // JS output folder
+    "rootDir": ".",                         
+    "noEmitOnError": true,                  // Don't emit JS if TS errors exist
+    "ignoreDeprecations": "6.0"             // Silence deprecation for moduleResolution=node10
+  },
+  "include": ["index.ts"],                   // Include main server file
+  "exclude": ["node_modules"]               
 }
