@@ -19,7 +19,17 @@ interface Project {
 
 export function Projects() {
   const projects: Project[] = [
-   
+    {
+      title: "ShopAlly",
+      description:
+        "ShopAlly is a multi-platform shopping assistant with a powerful web frontend built using Next.js and Tailwind CSS. I developed the web frontend, enabling users to compare products, set alerts, and manage shopping preferences through an intuitive interface connected to a Go backend API.",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS", "Go", "API Integration"],
+      image: "/projectlogo/shopally.png",
+      color: "text-neon-cyan",
+      gradient: "from-cyan-500 to-blue-500",
+      codeLink: "https://github.com/Fenet-damena/job-listing-app",
+      liveLink: "https://shop-ally-ai.vercel.app/",
+    },
     {
       title: "BarsiisaaApp",
       description:
