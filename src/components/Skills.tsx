@@ -6,7 +6,7 @@ export function Skills() {
   {
     title: "Languages",
     skills: [
-      "JavaScript", "TypeScript", "Python","Go","c"
+      "JavaScript", "TypeScript", "Python","Go","C++", "C"
     ],
     color: "from-purple-500 to-pink-500"
   },
@@ -30,7 +30,7 @@ export function Skills() {
   {
     title: "Core Competencies",
     skills: [
-      "Data Structures", "Algorithms", "Agile", "Leadership", "AI/ML"
+      "Data Structures", "Algorithms", "Agile", "Leadership", "AI/ML", "problem Solving"
     ],
     color: "from-orange-500 to-red-500"
   }

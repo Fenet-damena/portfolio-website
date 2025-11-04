@@ -7,7 +7,7 @@ export function About() {
     {
       icon: Award,
       title: "Academic Excellence",
-      description: "/4.0 GPA • Top Female Student at ASTU",
+      description: "3.83/4.0 GPA • Top student at ASTU",
       color: "text-neon-purple"
     },
     {

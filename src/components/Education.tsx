@@ -21,7 +21,7 @@ export function Education() {
       location: "Adama, Oromia Region • On-site",
       icon: "/logo/astu.png",
       description:
-        "I am pursuing a Software Engineering degree at Adama Science and Technology University (ASTU), one of Ethiopia's leading universities, with a CGPA of /4.0. My studies cover key areas such as programming, data structures, databases, software development, distributed systems, and data communication, among other software engineering subjects. In addition to my coursework, I actively engage in hands-on projects and coding challenges to enhance my technical skills, problem-solving abilities, and practical experience in software development.",
+        "I am pursuing a Software Engineering degree at Adama Science and Technology University (ASTU), one of Ethiopia's leading universities, with a CGPA of 3.83/4.0. My studies cover key areas such as programming, data structures, databases, software development, distributed systems, and data communication, among other software engineering subjects. In addition to my coursework, I actively engage in hands-on projects and coding challenges to enhance my technical skills, problem-solving abilities, and practical experience in software development.",
       skills: ["Programming", "Data Structures", "Databases", "Software Development", "Project Management", "Distributed Systems", "Data Communication"],
     },
     {
