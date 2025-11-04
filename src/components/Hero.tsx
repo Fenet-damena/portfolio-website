@@ -22,8 +22,8 @@ export function Hero() {
   const handleCVDownload = () => {
     // Create a link to download the CV from the assets folder
     const link = document.createElement('a');
-    link.href = '/assets/Fenet_Damena_CV.pdf';
-    link.download = 'Fenet_Damena_CV.pdf';
+    link.href = 'public/cv/Fenet-Damena-CV.pdf';
+    link.download = 'Fenet-Damena-CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
