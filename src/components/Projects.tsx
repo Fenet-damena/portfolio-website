@@ -27,7 +27,7 @@ export function Projects() {
       image: "/projectlogo/shopally.png",
       color: "text-neon-cyan",
       gradient: "from-cyan-500 to-blue-500",
-      codeLink: "https://github.com/Fenet-damena/job-listing-app",
+      codeLink: "https://github.com/A2SV/g6-shopally.git",
       liveLink: "https://shop-ally-ai.vercel.app/",
     },
     {
@@ -38,7 +38,7 @@ export function Projects() {
       icon: BookOpen,
       color: "text-neon-purple",
       gradient: "from-purple-500 to-pink-500",
-      codeLink: "https://github.com/Fenet-damena/BarsiisaaApp",
+      codeLink: "https://github.com/Fenet-damena/BarsiisaaApp.git",
       liveLink: "https://barsiisaa-app.vercel.app/",
     },
     {
@@ -49,7 +49,7 @@ export function Projects() {
       icon: User,
       color: "text-neon-green",
       gradient: "from-green-500 to-emerald-500",
-      codeLink: "https://github.com/Fenet-damena/my-portfolio",
+      codeLink: "https://github.com/Fenet-damena/portfolio-website.git",
       liveLink: "https://fenet-damena.vercel.app/",
     },
   ];
